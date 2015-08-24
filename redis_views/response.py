@@ -8,7 +8,8 @@ import redis
 
 class RedisTemplateResponse(TemplateResponse):
 
-    connection = redis.StrictRedis.from_url(settings.REDIS_URL)
+    def __init__(self, *args, **kwargs):
+        self.connection = redis.StrictRedis.from_url(settings.REDIS_URL)
 
     def resolve_template(self, template):
         template = template[0]

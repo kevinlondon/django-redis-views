@@ -1,8 +1,14 @@
-from mock import patch, Mock
+from mock import patch
+import pytest
+from django.test import RequestFactory
 from redis_views.views import RedisView
 
 
 class TestRedisView:
+
+    @pytest.fixture
+    def rf(self):
+        return RequestFactory()
 
     def test_that_it_leaves_non_current_version_alone(self, rf):
         view = RedisView()

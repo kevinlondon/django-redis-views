@@ -1,5 +1,5 @@
 import pytest
-from mock import patch, Mock
+from mock import Mock
 from django.http import Http404
 from redis_views.response import RedisTemplateResponse
 
