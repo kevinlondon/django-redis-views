@@ -24,3 +24,7 @@ class TestRedisTemplateResponse:
     def test_it_checks_for_another_template_on_current_version(self, response):
         response.resolve_template(['app:current'])
         assert len(response.connection.get.mock_calls) == 2
+
+    def test_it_sets_connection_on_init(self, response):
+        assert not hasattr(RedisTemplateResponse, 'connection')
+        assert response.connection
