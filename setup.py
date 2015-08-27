@@ -30,7 +30,7 @@ history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 setup(
     name='django-redis-views',
     version=version,
-    description="""An implementation of the server-side component for Lightning Fast SPA deploys.""",
+    description="""An implementation of the server-side component for Lightning Fast single page app deploys.""",
     long_description=readme + '\n\n' + history,
     author='Kevin London',
     author_email='kevinlondon@gmail.com',
@@ -40,6 +40,8 @@ setup(
     ],
     include_package_data=True,
     install_requires=[
+        'redis>=2.10.3',
+        'django>=1.5.1',
     ],
     license="BSD",
     zip_safe=False,
