@@ -65,7 +65,7 @@ And then set it a route for it in your `urls.py` file::
 
 
     urlpatterns = patterns('',
-        url(r'^$', EmberIndexView.as_view()),
+        url(r'^$', EmberAppIndex.as_view()),
     )
     
 At this point, you should be able to go to your root url and see your index
@@ -80,6 +80,37 @@ Features
 * Works out-of-the-box with `ember-cli-deploy
   <https://github.com/ember-cli/ember-cli-deploy>`_ and 
   `ember-deploy-redis <https://github.com/LevelbossMike/ember-deploy-redis>`_.
+
+Injecting Context to your Template
+----------------------------------
+
+If you want to use Django's template engine to replace values in your Ember
+index file, you can do that by injecting the context. Let's pretend that we
+have this very simple Ember index page:
+
+    <p>Hello {{ name }}!</p>
+
+In order to inject `{{ name }}` from Django into the Ember index page,
+you'll want to add to the context. This package is built upon the generic views
+in Django, so we inject context the same way that they do. In your `views.py`
+file (using the same conventions as above)::
+
+    from redis_views import RedisView
+
+    class EmberAppIndex(RedisView):
+
+        . . . 
+
+        def get_context_data(self, **kwargs):
+            # Call the base implementation first to get a context
+            context = super(EmberAppIndex, self).get_context_data(**kwargs)
+            # Add in the name value (you could also use a dynamic value from a database object)
+            context['name'] = 'Joe'
+            return context
+
+Then, in the template, it will fill in the value with your supplied value.
+As mentioned in the comment, you can inject pretty much anything that could
+normally be handled by Django templates, such as a CSRF token.
 
 Cookiecutter Tools Used in Making This Package
 ----------------------------------------------
