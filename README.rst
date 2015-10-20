@@ -115,12 +115,13 @@ normally be handled by Django templates, such as a CSRF token.
 Running the Tests
 -----------------
 
-To run the tests for the project, you'll want to first install the test
-requirements.
+To run the steps, please do the following in your terminal:
 
-`$ pip install -r requirements-test.txt`
+    # Install the testing requirements
+    pip install -r requirements-test.txt
 
-Then, after that completes, run the tests with `$ py.test`.
+    # Run the tests
+    py.test
 
 
 Cookiecutter Tools Used in Making This Package
