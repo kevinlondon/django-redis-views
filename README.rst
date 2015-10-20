@@ -15,6 +15,14 @@ Documentation
 
 The full documentation is at https://django-redis-views.readthedocs.org.
 
+Features
+--------
+
+* Serves your single page javascript apps easily through Django views.
+* Works out-of-the-box with `ember-cli-deploy
+  <https://github.com/ember-cli/ember-cli-deploy>`_ and 
+  `ember-deploy-redis <https://github.com/LevelbossMike/ember-deploy-redis>`_.
+
 Background
 ----------
 
@@ -73,14 +81,6 @@ page!
 
 TODO: Walk through a full example project.
 
-Features
---------
-
-* Serves your single page javascript apps easily through Django views.
-* Works out-of-the-box with `ember-cli-deploy
-  <https://github.com/ember-cli/ember-cli-deploy>`_ and 
-  `ember-deploy-redis <https://github.com/LevelbossMike/ember-deploy-redis>`_.
-
 Injecting Context to your Template
 ----------------------------------
 
@@ -111,6 +111,17 @@ file (using the same conventions as above)::
 Then, in the template, it will fill in the value with your supplied value.
 As mentioned in the comment, you can inject pretty much anything that could
 normally be handled by Django templates, such as a CSRF token.
+
+Running the Tests
+-----------------
+
+To run the tests for the project, you'll want to first install the test
+requirements.
+
+`$ pip install -r requirements-test.txt`
+
+Then, after that completes, run the tests with `$ py.test`.
+
 
 Cookiecutter Tools Used in Making This Package
 ----------------------------------------------
