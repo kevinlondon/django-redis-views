@@ -115,7 +115,7 @@ normally be handled by Django templates, such as a CSRF token.
 Running the Tests
 -----------------
 
-To run the steps, please do the following in your terminal:
+To run the steps, please do the following in your terminal::
 
     # Install the testing requirements
     pip install -r requirements-test.txt
