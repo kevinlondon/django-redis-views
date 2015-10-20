@@ -9,9 +9,12 @@ from redis_views.response import RedisTemplateResponse, logger
 class TestRedisTemplateResponse:
 
     @pytest.fixture
-    def response(self):
+    @mock.patch.object(redis.StrictRedis, 'from_url')
+    def response(self, connection_init):
+        connection_init.return_value = mock.Mock()
+
         response = RedisTemplateResponse(request=None, template='')
-        response.connection = mock.Mock()
+
         return response
 
     def test_it_resolves_template_to_named_version(self, response):
@@ -34,12 +37,7 @@ class TestRedisTemplateResponse:
         assert not hasattr(RedisTemplateResponse, 'connection')
         assert response.connection
 
-    @mock.patch.object(redis.StrictRedis, 'from_url')
-    def test_it_pings_connection_on_init(self, connection_init):
-        connection = mock.Mock()
-        connection_init.return_value = connection
-
+    def test_it_pings_connection_on_init(self):
         response = self.response()
 
-        assert connection_init.called
-        assert connection.ping.called
+        assert response.connection.ping.called
