@@ -5,10 +5,6 @@ from redis_views.views import RedisView
 
 class TestRedisView:
 
-    @pytest.fixture
-    def rf(self):
-        return RequestFactory()
-
     def test_that_it_leaves_non_current_index_value_alone(self, rf):
         view = RedisView()
         view.request = rf.get('/', {'index_key': 'abc'})
