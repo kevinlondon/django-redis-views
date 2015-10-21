@@ -5,7 +5,7 @@ from django.template.base import Template
 from django.conf import settings
 from django.http import Http404
 
-from  redis import StrictRedis
+from redis import StrictRedis
 
 
 class RedisTemplateResponse(TemplateResponse):
@@ -16,7 +16,7 @@ class RedisTemplateResponse(TemplateResponse):
         super(RedisTemplateResponse, self).__init__(*args, **kwargs)
         self.logger = logging.getLogger(__name__)
         self.connection = StrictRedis.from_url(settings.REDIS_URL,
-                                               self.socket_timeout)
+                                               socket_timeout=self.socket_timeout)
 
         # Ping the server to make sure we have a valid connection.
         # This will raise a ConnectionError if the redis URL is invalid.

@@ -41,3 +41,14 @@ class TestRedisTemplateResponse:
 
     def test_it_pings_connection_on_init(self, response):
         assert response.connection.ping.called
+
+    @mock.patch.object(redis.StrictRedis, 'from_url')
+    def test_it_sets_socket_timeout(self, connection_init, settings):
+        settings.REDIS_URL = 'foo'
+        settings.REDIS_CLIENT_SOCKET_TIMEOUT = 5
+
+        RedisTemplateResponse(request=None, template='')
+        connection_init.assert_called_with(
+            settings.REDIS_URL,
+            socket_timeout=settings.REDIS_CLIENT_SOCKET_TIMEOUT
+        )
