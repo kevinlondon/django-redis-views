@@ -68,13 +68,13 @@ Then, to use it in your Django project, first add a new view to a
 
 And then set it a route for it in your `urls.py` file::
 
-    from django.conf.urls import patterns
+    from django.conf.urls import url
     from myapp.views import EmberAppIndex
 
 
-    urlpatterns = patterns('',
+    urlpatterns = [
         url(r'^$', EmberAppIndex.as_view()),
-    )
+    ]
     
 At this point, you should be able to go to your root url and see your index
 page!
